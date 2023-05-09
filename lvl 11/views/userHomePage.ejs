@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="<%= csrfToken %>" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+      crossorigin="anonymous"
+    ></script>
+
+
+    <style>
+      .loginInput {
+        width: 75%;
+        height: 7vh;
+        margin: 5px;
+        border: none;
+        background-color: whitesmoke;
+        border-radius: 32px;
+      }
+      #loginBtn {
+        width: 10%;
+        height: 4vh;
+        border: 1px solid red;
+        background-color: transparent;
+        color: white;
+        font-weight: 500;
+        letter-spacing: 2px;
+        font-size: 18px;
+        padding: 0px;
+        box-shadow: 1px 2px 10px 2px rgba(255, 0, 0, 0.556);
+        font-family: Pacifico;
+      }
+      #loginBtn:hover {
+        background-color: red;
+      }
+    </style>
+    <title>Admin</title>
+  </head>
+  <body>
+    <section id="home">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <p
+            class="h2 mx-3"
+            style="font-family: Pacifico; font-weight: 300"
+          >
+            <span style="color: rgba(0, 0, 0, 0.819)">Sports Scheduler
+          </p>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link disabled"></a>
+              </li>
+            </ul>
+
+
+            <script>
+              function ShowAdminOptions() {
+                const element = document.getElementById("adminOptions");
+                if (element.style.display == "block") {
+                  element.style.display = "none";
+                } else {
+                  element.style.display = "block";
+                }
+              }
+            </script>
+          </div>
+        </div>
+      </nav>
+      <hr class="m-0" style="border: 2px solid rgb(255, 0, 0)" />
+      <ul
+          class="list-group"
+          id="adminOptions"
+          style="position: absolute; left: 90%"
+        > 
+        </ul>
+      <div
+        class="container"
+        style="
+          width: 100%;
+          min-height: 90vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+      <h1 class="m-5" style="font-family: sans-serif; color: rgba(0, 0, 0, 0.819); font-size: 3.5vw;">Sports</h1>
+      <div class="grid">
+        <% sportsItems.forEach(function(user) { %>
+        <div class="card">
+            <h1 style="color: rgba(0, 0, 0, 0.819); font-family: sans-serif;" class="getSportId" id="getNameOfSport"><%= user.Sports_Name %></h1>
+           
+        </div>
+        
+        <% }); %>
+      </div> 
+
+    </section>
+      
+      
+
+  </body>
+</html>

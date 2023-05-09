@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="<%= csrfToken %>" />
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <title><%= title %></title>
+    <!--Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+       #formContainer {
+        display: none;
+        position: absolute;
+        top: 25%;
+        left: 35%;
+        width: 30vw;
+        height: 50vh;
+        background-color: #fff;
+        border-radius: 0px;
+      }
+      .loginInput {
+        width: 75%;
+        height: 7vh;
+        margin: 5px;
+        border: none;
+        background-color: whitesmoke;
+        border-radius: 0px;
+      }
+      #loginBtn {
+        width: 13%;
+        height: 10%;
+        border: 1px solid rgb(193, 193, 193);
+        background-color: transparent;
+        color: blue;
+        font-weight: 500;
+        letter-spacing: 2px;
+        font-size: 100%;
+        padding: 2px;
+      }
+      #loginBtn:hover {
+        background-color: gray;
+      }
+      #formSignupContainer {
+        display: none;
+        position: absolute;
+        top: 15%;
+        left: 35%;
+        width: 30vw;
+        height: 70vh;
+        background-color: #fff;
+        border-radius: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="home">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <p
+            class="h2 mx-3"
+            style="font-family: sans-serif;color: black; font-weight: 300"
+          >
+          Sports Scheduler
+          </p>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link disabled"></a>
+              </li>
+            </ul>
+
+            <button
+              class="btn btn-outline-success"
+              id="loginBtn"
+              type="submit"
+              onclick="loginForm()"
+            >
+              Login
+            </button>
+            <script>
+              function loginForm() {
+                const element = document.getElementById("formContainer");
+                element.style.display = "block";
+              }
+            </script>
+          </div>
+        </div>
+      </nav>
+      <hr class="m-0" style="border: 2px solid rgb(59, 57, 57)" />
+      <% if(messages && messages.error && messages.error.length > 0)  { %>
+        <% for(var i=0; i<messages.error.length; i++) { %>
+                <p class="alert alert-danger"> <%= messages.error[i] %></p>
+        <% } %>
+      <% } %>
+      <div
+        class="div"
+        style="
+          width: 100%;
+          min-height: 90vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        "
+      >
+    </section>
+    
+    <div class="container formLogin shadow-lg" id="formContainer">
+      <form action="/session" method="post">
+        <h1
+          align="center"
+          class="my-3"
+          style="color: rgb(52, 52, 52); font-family: Pacifico"
+        >
+          Login
+        </h1>
+        <svg
+          onclick="closeForm()"
+          style="
+            position: absolute;
+            top: 0%;
+            left: 100%;
+            color: white;
+            background-color: rgb(7, 7, 7);
+            border-radius: 32px;
+            border: none;
+          "
+          id="closeSvg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="26"
+          height="26"
+          fill="currentColor"
+          class="bi bi-x-circle"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+          />
+          <path
+            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+        <script>
+          function closeForm() {
+            document.getElementById("formContainer").style.display = "none";
+          }
+        </script>
+        <hr />
+        <center>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <input
+            type="email"
+            class="loginInput p-3"
+            placeholder="Enter your email"
+            name="email"
+            id=""
+          /><br />
+          <input
+            type="password"
+            placeholder="password"
+            class="loginInput p-3"
+            name="password"
+            id=""
+          /><br /><br />
+          <button
+            type="submit"
+            class="btn w-50"
+            style="
+              background-color: rgb(74, 74, 74);
+              color: white;
+              font-weight: 600;
+              font-size: 1.7vw;
+            "
+          >
+            Login
+          </button>
+          <br /><br />
+          <label
+            >
+            <a href="#" onclick="SignUp()">Sign up</a></label
+          >
+          <script>
+            function SignUp() {
+              document.getElementById("formContainer").style.display = "none";
+              document.getElementById("formSignupContainer").style.display =
+                "block";
+            }
+          </script>
+        </center>
+      </form>
+    </div>
+    <div class="container formLogin shadow-lg" id="formSignupContainer">
+      <form action="/users" method="post">
+        <h1
+          align="center"
+          class="my-3"
+          style="color: rgb(74, 74, 74); font-family: Pacifico"
+        >
+          Signup
+        </h1>
+        <svg
+          onclick="closeFormSignup()"
+          style="
+            position: absolute;
+            top: 0%;
+            left: 100%;
+            color: white;
+            background-color: rgb(0, 0, 0);
+            border-radius: 32px;
+            border: none;
+          "
+          id="closeSvg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="26"
+          height="26"
+          fill="currentColor"
+          class="bi bi-x-circle"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+          />
+          <path
+            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+        <script>
+          function closeFormSignup() {
+            document.getElementById("formSignupContainer").style.display =
+              "none";
+          }
+        </script>
+        <hr />
+        <center>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First name"
+            id=""
+            class="loginInput p-3"
+            required
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last name"
+            id=""
+            class="loginInput p-3"
+            required
+          />
+          <input
+            type="text"
+            class="loginInput p-3"
+            placeholder="Enter your email"
+            name="email"
+            id=""
+            required
+          /><br />
+          <input
+            type="password"
+            placeholder="password"
+            class="loginInput p-3"
+            name="password"
+            id=""
+            required
+          /><br /><br />
+          <button
+            type="submit"
+            class="btn w-50"
+            style="
+              background-color: rgb(33, 33, 33);
+              color: white;
+              font-weight: 600;
+              font-size: 1.7vw;
+            "
+          >
+            Signup
+          </button>
+          <br /><br />
+          <label><a href="#">Sign up</a></label>
+        </center>
+      </form>
+    </div>
+  </body>
+</html>
